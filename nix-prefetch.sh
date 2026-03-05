@@ -4,6 +4,7 @@ help () {
 Options:
 -a | --attr <attribute name>
 -p | --path <path> (Default: "./." when --attr is used)
+-f | --file <path> (Alias for --path)
 -d | --dep <fetcher attribute name> (Default: "src")
 
 When --attr is unset, callPackage method will be used to get the hash for the package specified in --path.
@@ -16,7 +17,7 @@ dep="src"
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --path|-p) path="$2"; shift 2 ;;
+    --path|-p|--file|-f) path="$2"; shift 2 ;;
     --attr|-a) attr="$2"; shift 2 ;;
     --dep|-d) dep="$2"; shift 2 ;;
     --help|-h) help; exit ;;
