@@ -27,14 +27,14 @@ done
 if [ -z "$attr" ] && [ -n "$path" ]; then
   echo "Using callPackage method to get hash"
   nix-build call-package.nix \
-    --argstr path $path \
+    --argstr path $(realpath $path) \
     --argstr dep $dep
 elif [ -n "$attr" ]; then
   [ -z "$path" ] && path="./.";
   echo "Using fetchers from $path"
   nix-build custom.nix \
     --argstr attr $attr \
-    --argstr path $path \
+    --argstr path $(realpath $path) \
     --argstr dep $dep
 else
   help
